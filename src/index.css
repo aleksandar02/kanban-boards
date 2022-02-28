@@ -1,13 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Mulish', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #20232a;
+  color: #fff;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+}
+
+.home-content {
+  padding: 15px;
+  /* display: flex; */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+header h1 {
+  font-size: 32px;
+  margin-bottom: 2px;
+}
+
+header p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #cacacf;
+}
+
+.button {
+  padding: 10px 16px;
+  font-size: 14px;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.add-card-button {
+  border: 1px solid #115dd6;
+  border-radius: 2px;
+  background: #115dd6;
+  color: #fff;
+}
+
+header button.add-card-button {
+  align-self: end;
+}
+
+.boards-container {
+  width: 100%;
+  background: #20232a;
+  display: flex;
+  justify-content: space-between;
+}
+
+.board {
+  background: #fff;
+  border-radius: 4px;
+  flex: 1;
+  background: #2b2f38;
+  overflow: scroll;
+  position: relative;
+  height: 85vh;
+}
+
+.board::-webkit-scrollbar {
+  display: none;
+}
+
+.board-header {
+  border-bottom: 1px solid #3e4555;
+  padding: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #2b2f38;
+  width: 100%;
+}
+
+.board-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.board-header h4 {
+  display: inline-block;
+  margin: 0px;
+  margin-right: 6px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.board-header span {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(146, 139, 139);
+}
+
+.board:not(:nth-child(3)) {
+  margin-right: 15px;
+}
+
+.add-card-button-circle {
+  font-size: 24px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #474e5f;
+  margin: 16px 0 0 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 250ms ease;
+  cursor: pointer;
+}
+
+.add-card-button-circle:hover {
+  background: #3f4655;
+}
+
+.cards {
+  width: 100%;
+}
+
+.card {
+  background: #363c49;
+  border-radius: 4px;
+  padding: 12px 8px 12px 12px;
+}
+
+.card:not(:nth-child(1)) {
+  margin-top: 10px;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.card-header h5 {
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 500;
+  width: 80%;
+  margin-bottom: 6px;
+}
+
+.card .card-header span {
+  font-size: 22px;
+  padding: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease;
+}
+
+.card .card-header span:hover {
+  background: #2b2f38;
+}
+
+.card .labels {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+
+.card .labels span {
+  padding: 4px 8px;
+  border-radius: 3px;
+  border: 1px solid #474e5f;
+  /* background: #474e5f; */
+  margin-right: 6px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.card .time-created {
+  font-size: 12px;
+  color: #cacacf;
+  font-weight: 300;
+  text-align: right;
+  padding-right: 8px;
+}
+
+/* Modal */
+
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.modal-container {
+  width: 36%;
+  background: #20232a;
+  padding: 15px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #363c49;
+}
+
+.modal-header span {
+  font-size: 24px;
+  padding: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease;
+}
+
+.modal-header span:hover {
+  background: #2b2f38;
+}
+
+.modal-header h3 {
+  font-size: 21px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.modal-header p {
+  font-size: 15px;
+  font-weight: 300;
+  color: #cacacf;
+}
+
+.modal-content {
+  padding: 20px 0 0 0;
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.add-card-form .display-flex .input-group {
+  flex: 1;
+}
+
+.add-card-form .display-flex .input-group:nth-child(1) {
+  margin-right: 10px;
+}
+
+.add-card-form .display-flex .input-group:nth-child(2) {
+  margin-left: 10px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  color: #cacacf !important;
+  font-weight: 400;
+}
+
+.input-group input,
+.input-group fieldset,
+.input-group .MuiSelect-select {
+  color: #fafafa !important;
+  padding: 16px 14px !important;
+}
+.input-group textarea {
+  color: #fafafa !important;
+}
+
+.input-group fieldset {
+  border-color: #363c49 !important;
+}
+
+.input-group svg {
+  color: #cacacf;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.pull-right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.text-danger {
+  color: rgb(199, 75, 75);
+  font-size: 13px;
+  margin-top: 2px;
 }

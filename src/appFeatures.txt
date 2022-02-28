@@ -1,0 +1,17 @@
+Board:
+    - Id
+    - Name: "To Do" / "In Progress" / "Done"
+    - Number of cards
+    - 
+
+Cards:
+    - Id
+    - Title
+    - Description
+    - Time Created
+    - Status: "To Do" / "In Progress" / "Done"
+    
+    Actions:
+        - Create
+        - Delete
+        - Update
