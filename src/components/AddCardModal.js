@@ -8,12 +8,13 @@ const AddCardModal = ({
   editForm,
   editCard,
 }) => {
+  const title = editForm ? 'Edit Card' : 'Add New Card';
+
   return (
     <Modal
-      title='Add New Card'
+      title={title}
       subtitle='Fill in the required fields to create new card.'
       closeModal={closeModal}
-      addCard={addCard}
     >
       <AddCardForm
         addCard={addCard}

@@ -82,7 +82,7 @@ const AddCardForm = ({ addCard, editCard, formData, editForm }) => {
           label='Description'
           multiline
           fullWidth
-          rows={4}
+          rows={6}
           variant='outlined'
           value={formik.values.description}
           onChange={formik.handleChange}

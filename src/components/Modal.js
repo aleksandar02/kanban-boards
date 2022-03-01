@@ -9,7 +9,7 @@ const Modal = ({ closeModal, show, children, title, subtitle }) => {
         <div className='modal-header'>
           <div>
             <h3>{title}</h3>
-            <p>{subtitle}</p>
+            <p>{subtitle && subtitle}</p>
           </div>
           <span>
             <BiX onClick={closeModal}>Close</BiX>

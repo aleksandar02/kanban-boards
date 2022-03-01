@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import DropdownMenu from './DropdownMenu';
 
 const Card = ({ card, populateModalData, deleteCard }) => {
+  const navigate = useNavigate();
+
   let cardBorder = '';
 
   if (card.status == '2') {
@@ -14,7 +17,7 @@ const Card = ({ card, populateModalData, deleteCard }) => {
   const handleDropdownAction = (action) => {
     switch (action) {
       case 'View':
-        // retarget here
+        navigate(`/card-details/${card.id}`);
         break;
       case 'Edit':
         populateModalData(card);

@@ -54,13 +54,28 @@ header p {
   font-size: 14px;
   box-shadow: none;
   cursor: pointer;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.btn-delete {
+  border: 1px solid rgb(199, 75, 75);
+  background: rgb(199, 75, 75);
 }
 
 .add-card-button {
   border: 1px solid #115dd6;
-  border-radius: 2px;
   background: #115dd6;
-  color: #fff;
+}
+
+.btn-default {
+  background: #363c49;
+  border: 1px solid #363c49;
+}
+
+.btn-default.outlined {
+  background: transparent;
+  border: 1px solid #363c49;
 }
 
 header button.add-card-button {
@@ -193,7 +208,12 @@ header button.add-card-button {
   margin: 6px 0;
 }
 
-.card .labels span {
+.labels.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.labels span {
   padding: 4px 8px;
   border-radius: 3px;
   border: 1px solid #474e5f;
@@ -203,12 +223,25 @@ header button.add-card-button {
   font-weight: 400;
 }
 
-.card .time-created {
+.labels.column span {
+  width: fit-content;
+  font-size: 14px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+}
+
+.time-created {
   font-size: 12px;
   color: #cacacf;
   font-weight: 300;
   text-align: right;
   padding-right: 8px;
+}
+
+.main-details .time-created {
+  font-size: 16px;
+  text-align: left;
+  padding: 8px 0;
 }
 
 /* Modal */
@@ -239,7 +272,7 @@ header button.add-card-button {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding-bottom: 16px;
+  padding-bottom: 14px;
   border-bottom: 1px solid #363c49;
 }
 
@@ -256,6 +289,10 @@ header button.add-card-button {
 
 .modal-header span:hover {
   background: #2b2f38;
+}
+
+.modal-header div {
+  align-self: center;
 }
 
 .modal-header h3 {
@@ -334,4 +371,100 @@ header button.add-card-button {
   color: rgb(199, 75, 75);
   font-size: 13px;
   margin-top: 2px;
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+.card-details-content {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.card-details-content .side-details div {
+  margin-bottom: 32px;
+}
+
+.card-details-content .side-details .status span {
+  padding: 8px 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.bg-dark {
+  background: #363c49;
+}
+
+.bg-yellow {
+  background: #ccba19;
+}
+
+.bg-green {
+  background: #00b74a;
+}
+
+.card-details-content .main-details {
+  flex: 2;
+  width: 75%;
+  margin-right: 40px;
+}
+
+.card-details-content .side-details {
+  width: 25%;
+}
+
+.card-details-content .side-details h2 {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.card-details-content .main-details .main-details-header {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #363c49;
+}
+
+.card-details-content .main-details span {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  font-size: 17px;
+  display: block;
+}
+
+.card-details-content .main-details .btn-default {
+  margin-right: 12px;
+}
+
+.card-details-content .main-details .desc {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 300;
+  width: 80%;
+  margin-bottom: 24px;
+}
+
+.go-back {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 17px;
+  cursor: pointer;
+  color: #cacacf;
+  margin-bottom: 32px;
+}
+
+.go-back svg {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.confirm-modal p {
+  font-size: 18px;
+  margin-bottom: 24px;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Boards from '../components/Boards';
 import Header from '../components/Header';
 import AddCardModal from '../components/AddCardModal';
+import { v4 as uuid } from 'uuid';
 
 const initialModalData = {
   title: '',
@@ -11,73 +12,82 @@ const initialModalData = {
 
 const cardsData = [
   {
-    id: 1,
+    id: uuid(),
     title: 'Fix the Bug',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 3,
     timeCreated: '02-27-2022',
     labels: ['HTML', 'CSS'],
   },
   {
-    id: 2,
+    id: uuid(),
     title: 'Create new feature',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 2,
     timeCreated: '02-27-2020',
     labels: ['Javascript'],
   },
   {
-    id: 3,
+    id: uuid(),
     title: 'Refactor code',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 1,
     timeCreated: '02-27-2022',
     labels: ['Javascript'],
   },
   {
-    id: 4,
+    id: uuid(),
     title: 'Change header background.',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 3,
     timeCreated: '02-27-2022',
     labels: ['HTML', 'CSS'],
   },
   {
-    id: 5,
+    id: uuid(),
     title: 'Remove description in card.',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 1,
     timeCreated: '02-27-2022',
     labels: ['HTML', 'CSS'],
   },
   {
-    id: 6,
+    id: uuid(),
     title: 'Add new functionality.',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 1,
     timeCreated: '02-27-2022',
     labels: ['Javascript', 'React'],
   },
   {
-    id: 7,
+    id: uuid(),
     title: 'Add popup to ask users for app store review.',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 2,
     timeCreated: '02-27-2022',
     labels: ['HTML', 'CSS', 'Javascript'],
   },
   {
-    id: 8,
+    id: uuid(),
     title: 'Develop new Api checkout experience.',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 1,
     timeCreated: '02-27-2020',
     labels: ['Javascript', 'React'],
   },
   {
-    id: 9,
+    id: uuid(),
     title: 'Add new logos to shopping screens',
-    description: 'This is the description.',
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.",
     status: 1,
     timeCreated: '02-27-2021',
     labels: ['HTML', 'CSS'],
@@ -133,20 +143,21 @@ const Home = () => {
     setState((currentState) => ({
       ...currentState,
       modal: {
-        ...currentState.modal,
+        data: initialModalData,
         show: false,
+        editForm: false,
       },
     }));
   };
 
   const addCard = ({ title, description, status }) => {
     const card = {
-      id: cards.length + 1,
+      id: uuid(),
       title,
       description,
       status,
       timeCreated: new Date().toLocaleDateString('en-GB').split('/').join('-'),
-      labels: ['Javascript'],
+      labels: ['HTML', 'CSS', 'Javascript'],
     };
 
     localStorage.setItem('cards', JSON.stringify([...cards, card]));

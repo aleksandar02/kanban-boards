@@ -1,11 +1,12 @@
 import Card from './Card';
+import { v4 as uuid } from 'uuid';
 
 const Cards = ({ cards, populateModalData, deleteCard }) => {
   return (
     <div className='cards'>
-      {cards.map((card) => (
+      {cards.map((card, index) => (
         <Card
-          key={card.id}
+          key={uuid()}
           card={card}
           populateModalData={populateModalData}
           deleteCard={deleteCard}
