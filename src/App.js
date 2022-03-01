@@ -7,8 +7,11 @@ function App() {
     <div className='App'>
       <Router>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/card-details/:id' element={<CardDetailsPage />} />
+          <Route path='/kanban-boards' element={<Home />} />
+          <Route
+            path='/kanban-boards/card-details/:id'
+            element={<CardDetailsPage />}
+          />
         </Routes>
       </Router>
     </div>

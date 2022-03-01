@@ -66,7 +66,7 @@ const CardDetailsPage = () => {
 
     localStorage.setItem('cards', JSON.stringify(filteredCards));
 
-    navigate('/');
+    navigate('/kanban-boards');
   };
 
   const editCard = ({ id, title, description, status }) => {
@@ -104,7 +104,7 @@ const CardDetailsPage = () => {
 
   return (
     <div className='container'>
-      <p className='go-back' onClick={() => navigate('/')}>
+      <p className='go-back' onClick={() => navigate('/kanban-boards')}>
         <BiArrowBack />
         Go Back
       </p>

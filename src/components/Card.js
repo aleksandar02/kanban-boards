@@ -17,7 +17,7 @@ const Card = ({ card, populateModalData, deleteCard }) => {
   const handleDropdownAction = (action) => {
     switch (action) {
       case 'View':
-        navigate(`/card-details/${card.id}`);
+        navigate(`/kanban-boards/card-details/${card.id}`);
         break;
       case 'Edit':
         populateModalData(card);
