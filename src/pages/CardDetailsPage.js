@@ -148,6 +148,7 @@ const CardDetailsPage = () => {
           formData={card}
           editForm={true}
           editCard={editCard}
+          show={showModal}
         />
       )}
       {deleteModal && (
@@ -156,6 +157,7 @@ const CardDetailsPage = () => {
           title='Delete Card'
           text='Are you sure you now what are you doing?'
           deleteCard={deleteCard}
+          show={deleteModal}
         />
       )}
     </div>

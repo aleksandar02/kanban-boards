@@ -1,9 +1,9 @@
 import Button from './Button';
 import Modal from './Modal';
 
-const ConfirmModal = ({ title, text, closeModal, deleteCard }) => {
+const ConfirmModal = ({ title, text, closeModal, deleteCard, show }) => {
   return (
-    <Modal title={title} closeModal={closeModal}>
+    <Modal title={title} closeModal={closeModal} show={show}>
       <div className='confirm-modal'>
         <p>{text}</p>
       </div>

@@ -130,6 +130,8 @@ const Home = () => {
   }, []);
 
   const openModal = () => {
+    document.body.style.overflow = 'hidden';
+
     setState((currentState) => ({
       ...currentState,
       modal: {
@@ -140,6 +142,8 @@ const Home = () => {
   };
 
   const closeModal = () => {
+    document.body.style.overflow = 'visible';
+
     setState((currentState) => ({
       ...currentState,
       modal: {
@@ -235,6 +239,7 @@ const Home = () => {
           formData={modal.data}
           editForm={modal.editForm}
           editCard={editCard}
+          show={modal.show}
         />
       )}
     </div>

@@ -7,6 +7,7 @@ const AddCardModal = ({
   formData,
   editForm,
   editCard,
+  show,
 }) => {
   const title = editForm ? 'Edit Card' : 'Add New Card';
 
@@ -15,6 +16,7 @@ const AddCardModal = ({
       title={title}
       subtitle='Fill in the required fields to create new card.'
       closeModal={closeModal}
+      show={show}
     >
       <AddCardForm
         addCard={addCard}
