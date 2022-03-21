@@ -108,6 +108,7 @@ const Home = () => {
 
   useEffect(() => {
     console.log('Use effect called!');
+    console.log('This is redux-implementation branch!');
 
     const getData = () => {
       if (localStorage.getItem('cards') === null) {
