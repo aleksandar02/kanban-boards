@@ -4,6 +4,11 @@ import * as Yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Button from './Button';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { addCard } from '../redux/cards/card.actions';
+import { editCard } from '../redux/cards/card.actions';
+
+import { useSelector } from 'react-redux';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string()
@@ -14,20 +19,32 @@ const validationSchema = Yup.object().shape({
     .min(5, 'Too Short *')
     .max(1024, 'Too Long *')
     .required('Required field *'),
-  status: Yup.number().required('Required field *'),
+  cardStatus: Yup.number().required('Required field *'),
 });
 
-const AddCardForm = ({ addCard, editCard, formData, editForm }) => {
+const AddCardForm = () => {
+  const dispatch = useDispatch();
+  const initialModalData = useSelector((state) => state.modal.modalData);
+  const populateModal = useSelector((state) => state.modal.populateModal);
+
+  const formValues = initialModalData
+    ? initialModalData
+    : {
+        title: '',
+        description: '',
+        cardStatus: '',
+      };
+
   const formik = useFormik({
-    initialValues: formData,
+    initialValues: formValues,
     validationSchema,
     onSubmit: (values) => {
-      if (editForm) {
-        editCard(values);
+      if (populateModal) {
+        dispatch(editCard(values));
         return;
       }
 
-      addCard(values);
+      dispatch(addCard(values));
     },
   });
 
@@ -55,11 +72,11 @@ const AddCardForm = ({ addCard, editCard, formData, editForm }) => {
             <InputLabel id='demo-simple-select-label'>Status</InputLabel>
             <Select
               labelId='status-label'
-              id='status'
-              name='status'
+              id='cardStatus'
+              name='cardStatus'
               variant='outlined'
-              value={formik.values.status}
-              label='status'
+              value={formik.values.cardStatus}
+              label='cardStatus'
               onChange={formik.handleChange}
             >
               <MenuItem value={1}>To Do</MenuItem>
@@ -67,8 +84,8 @@ const AddCardForm = ({ addCard, editCard, formData, editForm }) => {
               <MenuItem value={3}>Done</MenuItem>
             </Select>
             <div className='text-danger'>
-              {formik.errors.status && formik.touched.status
-                ? formik.errors.status
+              {formik.errors.cardStatus && formik.touched.cardStatus
+                ? formik.errors.cardStatus
                 : null}
             </div>
           </FormControl>
@@ -97,7 +114,7 @@ const AddCardForm = ({ addCard, editCard, formData, editForm }) => {
       <div className='pull-right full-width'>
         <Button
           type='submit'
-          buttonText={editForm ? 'Save Changes' : 'Create Card'}
+          buttonText={populateModal ? 'Save Changes' : 'Create Card'}
           cssStyle='button add-card-button'
         />
       </div>

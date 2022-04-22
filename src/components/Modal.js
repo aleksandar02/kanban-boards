@@ -1,6 +1,13 @@
 import { BiX } from 'react-icons/bi';
 
-const Modal = ({ closeModal, show, children, title, subtitle }) => {
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { toggleModal } from '../redux/modal/modal.actions';
+
+const Modal = ({ children, title, subtitle }) => {
+  const dispatch = useDispatch();
+  const show = useSelector((state) => state.modal.show);
+
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
@@ -12,7 +19,7 @@ const Modal = ({ closeModal, show, children, title, subtitle }) => {
             <p>{subtitle && subtitle}</p>
           </div>
           <span>
-            <BiX onClick={closeModal}>Close</BiX>
+            <BiX onClick={() => dispatch(toggleModal(false))}>Close</BiX>
           </span>
         </div>
         <div className='modal-content'>{children}</div>

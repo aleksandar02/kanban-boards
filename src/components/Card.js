@@ -1,14 +1,20 @@
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import DropdownMenu from './DropdownMenu';
 
-const Card = ({ card, populateModalData, deleteCard }) => {
+import { removeCard } from '../redux/cards/card.actions';
+
+import { populateModalData } from '../redux/modal/modal.actions';
+
+const Card = ({ card }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let cardBorder = '';
 
-  if (card.status == '2') {
+  if (card.cardStatus == '2') {
     cardBorder = '3.5px solid #ffc107';
-  } else if (card.status == '3') {
+  } else if (card.cardStatus == '3') {
     cardBorder = '3.5px solid #00b74a';
   }
 
@@ -20,10 +26,10 @@ const Card = ({ card, populateModalData, deleteCard }) => {
         navigate(`/kanban-boards/card-details/${card.id}`);
         break;
       case 'Edit':
-        populateModalData(card);
+        dispatch(populateModalData(card));
         break;
       case 'Delete':
-        deleteCard(card);
+        dispatch(removeCard(card.id));
         break;
 
       default:

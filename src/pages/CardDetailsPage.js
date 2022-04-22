@@ -1,54 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { selectCardById } from '../redux/cards/card.reducer';
 
 import { BiArrowBack } from 'react-icons/bi';
 import Button from '../components/Button';
 import AddCardModal from '../components/AddCardModal';
 import ConfirmModal from '../components/ConfirmModal';
+import { useSelector } from 'react-redux';
 
 const CardDetailsPage = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [{ card, showModal }, setState] = useState({
-    card: {},
-    showModal: false,
-  });
+  const [showModal, setShowModal] = useState(false);
 
+  // If card is undefined navigate to '/kanban-boards/'
+  const card = useSelector((state) => selectCardById(state.cards, params.id));
   const [deleteModal, setDeleteModal] = useState(false);
 
-  useEffect(() => {
-    const getCardData = () => {
-      const data = JSON.parse(localStorage.getItem('cards')).find(
-        (card) => card.id == params.id
-      );
-
-      if (!data) {
-        navigate('/');
-        return;
-      }
-
-      setState((currentState) => ({
-        ...currentState,
-        card: { ...data },
-      }));
-    };
-
-    getCardData();
-  }, []);
-
   const openModal = () => {
-    setState((currentState) => ({
-      ...currentState,
-      showModal: true,
-    }));
+    setShowModal(true);
   };
 
   const closeModal = () => {
-    setState((currentState) => ({
-      ...currentState,
-      showModal: false,
-    }));
+    setShowModal(false);
   };
 
   const openDeleteModal = () => {
@@ -69,36 +44,13 @@ const CardDetailsPage = () => {
     navigate('/kanban-boards');
   };
 
-  const editCard = ({ id, title, description, status }) => {
-    const editedCard = {
-      ...card,
-      title,
-      description,
-      status,
-      timeCreated: new Date().toLocaleDateString('en-GB').split('/').join('-'),
-    };
-
-    const cards = JSON.parse(localStorage.getItem('cards'));
-
-    const editedCards = cards.map((card) =>
-      card.id == id ? { ...card, ...editedCard } : card
-    );
-
-    localStorage.setItem('cards', JSON.stringify(editedCards));
-
-    setState(() => ({
-      card: { ...editedCard },
-      showModal: false,
-    }));
-  };
-
   const statusText = ['To Do', 'In Progress', 'Done'];
 
   let statusBgColor = 'bg-dark';
 
-  if (card.status === 2) {
+  if (card.cardStatus === 2) {
     statusBgColor = 'bg-yellow';
-  } else if (card.status === 3) {
+  } else if (card.cardStatus === 3) {
     statusBgColor = 'bg-green';
   }
 
@@ -108,6 +60,7 @@ const CardDetailsPage = () => {
         <BiArrowBack />
         Go Back
       </p>
+
       <div className='card-details-content'>
         <div className='main-details'>
           <div className='main-details-header'>
@@ -130,7 +83,9 @@ const CardDetailsPage = () => {
         <div className='side-details'>
           <div className='status'>
             <h2>Status:</h2>
-            <span className={statusBgColor}>{statusText[card.status - 1]}</span>
+            <span className={statusBgColor}>
+              {statusText[card.cardStatus - 1]}
+            </span>
           </div>
           <div className='labels column'>
             <h2>Labels:</h2>
@@ -147,7 +102,6 @@ const CardDetailsPage = () => {
           closeModal={closeModal}
           formData={card}
           editForm={true}
-          editCard={editCard}
           show={showModal}
         />
       )}
